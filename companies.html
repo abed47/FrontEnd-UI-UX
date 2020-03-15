@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="./main.css">
+        <title>UI/UX</title>
+    </head>
+    <body>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 header p-0">
+            <nav class="navbar navbar-expand-md navbar-light bg-light navbar-main">
+              <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item dropdown profile-menu">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <img alt="My Profile" src= "assets/images/person.png">
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a href="#" class="nav-link">Logout</a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+          <div class="col content" id="pageContent">
+            
+
+
+            <div class="companies-view p-0 m-0">
+                <div class="container-fluid p-0 m-0 px-70">
+                   <div class="row d-flex justify-content-between">
+                     <h3 class="page-title justify-content-between">Companies</h3>
+                                 <button type="button" class="theme-btn" data-toggle="modal" data-target="#addCompanyModal">Add Company</button>
+             
+                   </div>
+                   <div class="row search-box align-content-center">
+                     <form action="" class="d-flex justify-content-between">
+                       <input type="text" placeholder="Search..." class="search-field" />
+             
+                       <span>
+                         <button class="theme-btn-bordered">Filter</button>
+                         <button type="submit" class="theme-btn">Search</button>
+                       </span>
+                     </form>
+                   </div>
+                   <div class="row theme-table align-content-center">
+                     <div class="table-header">
+                       <p id="total_companies_p"></p>
+             
+                       <ul>
+                         <li><a href="#" onclick="addTolist()">Add to List</a></li>
+                         <li><a href="#" onclick="manageTages()">Manage Tags</a></li>
+                         <li><a href="#" onclick="mergeComapnies()">Merge Companies</a></li>
+                         <li>
+                           <a href="#" onclick="removeContacts()"
+                             >Remove contacts to Marked for delete</a
+                           >
+                         </li>
+                       </ul>
+                     </div>
+             
+                     <table id="companies-table">
+                       <thead>
+                         <tr>
+                           <th>
+                             <span class="custom-checkbox"
+                               ><input
+                                 type="checkbox"
+                                 name="selectAll"
+                                 id="selectAll" style="margin-left: 2px"/><label
+                                 for="selectAll"
+                                 onclick="selectAll()"
+                               ></label
+                             ></span>
+                           </th>
+                           <th>Name <i class="fas fa-arrow-down i-green"></i></th>
+                           <th>Address <i class="fas fa-arrow-down i-green"></i></th>
+                           <th>Actions<i class="fas fa-arrow-down i-green"></i></th>
+                         </tr>
+                       </thead>
+                       <tbody id="table-body">
+                         <tr>
+                           <td><span  class="custom-checkbox"><input type="checkbox" name="" id="33"> <label for="33"></label></span></td>
+                           <td>Test company</td>
+                           <td>Test address</td>
+                           <td><span><i class="fas fa-map-marker-alt"></i></span><span><i class="fas fa-eye"></i></span> <span><i class="fas fa-edit"></i></span></td>
+                         </tr>
+                       </tbody>
+                     </table>
+                   </div>
+                 </div>
+                 <div class="pager row">
+                   <button class="pager-btn current">1</button>
+                   <button class="pager-btn">2</button>
+                   <button class="pager-btn">3</button>
+                 </div>
+             
+             
+             
+             
+                 <!-- add company modal-->
+                 <div class="modal fade" id="addCompanyModal" tabindex="-1" role="dialog" aria-labelledby="addCompanyModalLabel" aria-hidden="true">
+                         <div class="modal-dialog" role="document">
+                           <div class="modal-content">
+                             <div class="modal-header">
+                               <h5 class="modal-title" id="addCompanyModalLabel">Add Company</h5>
+             
+                             </div>
+                             <div class="modal-body">
+                                 <form class="row p-0 m-0">
+                                   <div class="form-group col-6 ">
+                                     <label for="companyName">Name</label>
+                                     <input type="text" class="form-control" id="companyName" >
+                                   </div>
+                                   <div class="form-group col-6">
+                                     <label for="datePicker" >Account Opened Date</label>
+                                     <input type="date" class="form-control datepicker" id="datePicker" >
+                                   </div>
+                                   <div class="form-group col-6">
+                                     <label for="companyWebsite">Website</label>
+                                     <input type="text" class="form-control" id="companyWebsite" >
+                                   </div>
+                                   <div class="form-group col-6">
+                                     <label for="numberOfEmployees">Number of Employees</label>
+                                     <input type="number" class="form-control" id="numberOfEmployees" >
+                                   </div>
+                                   <div class="form-group col-6">
+                                     <div class="input-group-prepend">
+                                       <label  for="businessType">Business Type</label>
+                                     </div>
+                                     <select class="custom-select" id="businessType">
+                                       <option selected>Choose business type</option>
+                                       <option value="1">One</option>
+                                       <option value="2">Two</option>
+                                       <option value="3">Three</option>
+                                     </select>
+                                   </div>
+                                   <div class="form-group col-6">
+                                     <div class="input-group-prepend">
+                                       <label  for="parentCompany">Parent Company</label>
+                                     </div>
+                                     <select class="custom-select" id="parentCompany">
+                                       <option selected>Choose parent company</option>
+                                       <option value="1">One </option>
+                                       <option value="2">Two</option>
+                                       <option value="3">Three</option>
+                                     </select>
+                                   </div>
+                                   <div class="form-group col-6">
+                                     <div class="input-group-prepend">
+                                       <label  for="parentCompany">Location</label>
+                                     </div>
+                                     <select class="custom-select" id="parentCompany">
+                                       <option selected>Choose location</option>
+                                       <option value="1">One </option>
+                                       <option value="2">Two</option>
+                                       <option value="3">Three</option>
+                                     </select>
+                                   </div>
+                                   <div class="form-group col-6">
+                                     <div class="input-group-prepend">
+                                       <label  for="parentCompany">Primay Contact</label>
+                                     </div>
+                                     <select class="custom-select" id="parentCompany">
+                                       <option selected>Choose primary contact</option>
+                                       <option value="1">One </option>
+                                       <option value="2">Two</option>
+                                       <option value="3">Three</option>
+                                     </select>
+                                   </div>
+                                   <div class="form-group col-6">
+                                     <label for="anualRevenue">Anual Revenue</label>
+                                     <input type="text" class="form-control" id="anualRevenue" >
+                                   </div>
+                                 </form>
+                             </div>
+                             <div class="modal-footer">
+                               <button type="button" class="theme-btn" data-dismiss="modal">Close</button>
+                               <button type="button" class="theme-btn">Add Company</button>
+                             </div>
+                           </div>
+                         </div>
+                       </div>
+             </div>
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sidebar bg-primary" id="sidebar">
+        <div class="logo">
+          <img alt="Rice Dairy" src= "assets/images/logo-white-x2.png">
+        </div>
+        <a href="#" class="toggle-btn">
+          <img alt="Toggle Sidebar" id="toggleImg" src= "assets/icons/sidebar-toggle.svg">
+        </a>
+        <nav class="navbar navbar-expand navbar-dark">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto flex-column">
+              <li class="nav-item">
+                <LinkTo @route="dashboard" class="nav-link">
+                  <img alt="Dashboard" src= "assets/icons/dashboard.svg">
+                  <span>Dashboard</span>
+                </LinkTo>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <img alt="Leads" src= "assets/icons/calendar.svg">
+                  <span>Leads</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <img alt="Contacts" src= "assets/icons/people.svg">
+                  <span>Contacts</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <LinkTo @route="dashboard.company" class="nav-link">
+                  <img alt="Dashboard" src= "assets/icons/enterprise.svg">
+                  <span>Companies</span>
+                </LinkTo>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <img alt="Settings" src= "assets/icons/settings.svg">
+                  <span>Settings</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <img alt="Help" src= "assets/icons/help.svg">
+                  <span>Help</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+</html>
